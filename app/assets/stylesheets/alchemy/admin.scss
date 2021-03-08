@@ -51,9 +51,5 @@
 @import "jquery.Jcrop.min";
 
 @import 'trix/dist/trix';
-
-.trix-content {
-  max-height: 800px !important;
-  overflow-y: auto;
-}
+@import 'alchemy/custom';
 

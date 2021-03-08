@@ -1,0 +1,16 @@
+.trix-content {
+  max-height: 800px !important;
+  overflow-y: auto;
+}
+
+.languages_hint {
+
+}
+
+.red-span {
+  background-color: $error_background_color;
+}
+
+.green-span {
+  background-color: $success_background_color;
+}

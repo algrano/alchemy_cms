@@ -34,6 +34,16 @@ module Alchemy
         end
       end
 
+      def page_translations_links(page)
+        supported_languages = ::I18n.available_locales.map(&:to_s)
+
+        elements = (supported_languages - [page.language_code]).map do |lang|
+          content_tag(:span, lang.upcase, class: translated_page_class(page, lang))
+        end
+
+        elements.join(' ').html_safe
+      end
+
       def page_status_checkbox(page, attribute)
         label = page.class.human_attribute_name(attribute)
 
@@ -51,6 +61,14 @@ module Alchemy
         end
 
         content_tag(:label, class: "checkbox") { content }
+      end
+
+      def translated_page_class(page, lang)
+        if Alchemy::Page.where(urlname: page.urlname, language_code: lang).any?
+          'green-span'
+        else
+          'red-span'
+        end
       end
     end
   end

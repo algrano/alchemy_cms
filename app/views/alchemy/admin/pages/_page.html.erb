@@ -44,6 +44,9 @@
       {{/if}}
     </div>
     <div class="sitemap_right_tools">
+      <div class="languages_hint">
+        <%= page_translations_links(page) %>
+      </div>
       <%- unless @sorting -%>
         {{#if permissions.info}}
         <div class="button_with_label sitemap_tool">
