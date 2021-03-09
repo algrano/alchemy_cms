@@ -51,5 +51,22 @@
 @import "jquery.Jcrop.min";
 
 @import 'trix/dist/trix';
-@import 'alchemy/custom';
 
+.trix-content {
+  max-height: 800px !important;
+  overflow-y: auto;
+}
+
+.languages_hint {
+
+}
+
+.red-span {
+  background-color: #efd3d3;
+  padding: 5px;
+}
+
+.green-span {
+  background-color: #e2efd3;
+  padding: 5px;
+}

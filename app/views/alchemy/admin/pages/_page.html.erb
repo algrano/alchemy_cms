@@ -44,9 +44,6 @@
       {{/if}}
     </div>
     <div class="sitemap_right_tools">
-      <div class="languages_hint">
-        <%= page_translations_links(page) %>
-      </div>
       <%- unless @sorting -%>
         {{#if permissions.info}}
         <div class="button_with_label sitemap_tool">
@@ -156,6 +153,9 @@
       <span class="page_status with-hint">
         <i class="icon fas fa-fw fa-lock {{#unless restricted}}disabled{{/unless}}" data-fa-transform="shrink-2"></i>
         <span class="hint-bubble">{{status_titles.restricted}}</span>
+      </span>
+      <span class="languages_hint">
+        {{{ translation_hints }}}
       </span>
     </div>
     <div class="sitemap_url" title="{{url_path}}">

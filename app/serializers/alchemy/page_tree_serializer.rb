@@ -2,6 +2,9 @@
 
 module Alchemy
   class PageTreeSerializer < BaseSerializer
+    include ActionView::Helpers::TagHelper
+    include Alchemy::Admin::PagesHelper
+
     def attributes
       {"pages" => nil}
     end
@@ -57,6 +60,7 @@ module Alchemy
         page_layout: page.page_layout,
         slug: page.slug,
         urlname: page.urlname,
+        translation_hints: page_translations_hints(page),
         url_path: page.url_path,
         level: level,
         root: page.depth == 1,

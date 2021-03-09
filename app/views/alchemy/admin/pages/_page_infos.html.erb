@@ -6,3 +6,6 @@
   <%= render_icon(:lock, transform: 'shrink-2', class: @page.restricted? ? nil : 'disabled') %>
   <span class="hint-bubble"><%= page.status_title(:restricted) %></span>
 </span>
+<div class="languages_hint">
+  <%= page_translations_hints(@page) %>
+</div>

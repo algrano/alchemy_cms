@@ -34,7 +34,7 @@ module Alchemy
         end
       end
 
-      def page_translations_links(page)
+      def page_translations_hints(page)
         supported_languages = ::I18n.available_locales.map(&:to_s)
 
         elements = (supported_languages - [page.language_code]).map do |lang|
