@@ -25,12 +25,12 @@
       crop: true
       fixed_ratio: false
   - name: text
-    type: EssenceRichtext
+    type: EssenceActionText
 
 - name: text
   contents:
   - name: text
-    type: EssenceRichtext
+    type: EssenceActionText
 
 - name: search
   contents: []
@@ -43,7 +43,7 @@
     type: EssenceText
     rss_title: true
   - name: body
-    type: EssenceRichtext
+    type: EssenceActionText
     rss_description: true
 
 - name: download
@@ -91,7 +91,7 @@
         size: 1200x480
         crop: true
     - name: essence_richtext
-      type: EssenceRichtext
+      type: EssenceActionText
       hint: true
     - name: essence_select
       type: EssenceSelect
@@ -117,7 +117,7 @@
 - name: <%= 'erb_' + 'element' %>
   contents:
   - name: text
-    type: EssenceRichtext
+    type: EssenceActionText
 
 - name: slide
   compact: true

@@ -15,7 +15,7 @@
     type: EssencePicture
     hint: true
   - name: text
-    type: EssenceRichtext
+    type: EssenceActionText
     default: :article_text
     hint: true
 <%- end -%>

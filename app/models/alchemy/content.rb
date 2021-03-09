@@ -35,7 +35,7 @@ module Alchemy
     scope :essence_htmls, -> { where(essence_type: "Alchemy::EssenceHtml") }
     scope :essence_links, -> { where(essence_type: "Alchemy::EssenceLink") }
     scope :essence_pictures, -> { where(essence_type: "Alchemy::EssencePicture") }
-    scope :essence_richtexts, -> { where(essence_type: "Alchemy::EssenceRichtext") }
+    scope :essence_richtexts, -> { where(essence_type: "Alchemy::EssenceActionText") }
     scope :essence_selects, -> { where(essence_type: "Alchemy::EssenceSelect") }
     scope :essence_texts, -> { where(essence_type: "Alchemy::EssenceText") }
     scope :named, ->(name) { where(name: name) }

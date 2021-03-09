@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Alchemy
-  class EssenceRichtextSerializer < ActiveModel::Serializer
+  class EssenceActionTextSerializer < ActiveModel::Serializer
     attributes(
       :id,
       :body,

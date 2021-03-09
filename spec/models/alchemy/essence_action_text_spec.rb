@@ -3,13 +3,13 @@
 require "rails_helper"
 
 module Alchemy
-  describe EssenceRichtext do
+  describe EssenceActionText do
     let(:essence) do
-      EssenceRichtext.new(body: "<h1>Hello!</h1><p>Welcome to Peters Petshop.</p>")
+      EssenceActionText.new(body: "<h1>Hello!</h1><p>Welcome to Peters Petshop.</p>")
     end
 
     it_behaves_like "an essence" do
-      let(:essence) { EssenceRichtext.new }
+      let(:essence) { EssenceActionText.new }
       let(:ingredient_value) { "<h1>Hello!</h1><p>Welcome to Peters Petshop.</p>" }
     end
 

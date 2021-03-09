@@ -13,6 +13,8 @@
 
 module Alchemy
   class EssenceActionText < BaseRecord
+    self.table_name = 'alchemy_essence_richtexts'
+
     acts_as_essence ingredient_column: :content
 
     has_rich_text :content

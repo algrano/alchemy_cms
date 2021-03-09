@@ -7,6 +7,7 @@ end
 # Require globally used external libraries
 require "acts_as_list"
 require "action_view/dependency_tracker"
+require "action_text/engine"
 require "active_model_serializers"
 require "awesome_nested_set"
 require "cancan"

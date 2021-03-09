@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-describe "alchemy/essences/_essence_richtext_view" do
-  let(:essence) { Alchemy::EssenceRichtext.new(body: "<h1>Lorem ipsum dolor sit amet</h1> <p>consectetur adipiscing elit.</p>", stripped_body: "Lorem ipsum dolor sit amet consectetur adipiscing elit.") }
+describe "alchemy/essences/_essence_action_text_view" do
+  let(:essence) { Alchemy::EssenceActionText.new(content: "<h1>Lorem ipsum dolor sit amet</h1> <p>consectetur adipiscing elit.</p>", stripped_body: "Lorem ipsum dolor sit amet consectetur adipiscing elit.") }
   let(:content) { Alchemy::Content.new(essence: essence) }
 
   it "renders the html body" do

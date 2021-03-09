@@ -10,7 +10,7 @@ $('#picture_to_assign_<%= @content.ingredient.id %> a').attr('href', '#').off('c
 
 Alchemy.Datepicker('#element_<%= @content.element_id %>');
 
-<% elsif @content.essence_type == "Alchemy::EssenceRichtext" %>
+<% elsif @content.essence_type == "Alchemy::EssenceActionText" %>
 
 Alchemy.Tinymce.initEditor(<%= @content.id %>);
 
