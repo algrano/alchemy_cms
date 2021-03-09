@@ -20,6 +20,7 @@ module Alchemy
 
     before_action :load_index_page, only: [:index]
     before_action :load_page, only: [:show]
+    before_action :missing_page_redirect, only: :show
 
     # Legacy page redirects need to run after the page was loaded and before we render 404.
     include LegacyPageRedirects
@@ -84,6 +85,13 @@ module Alchemy
     end
 
     private
+
+    def missing_page_redirect
+      @page ||= Page.find_by(
+        urlname: params[:urlname],
+        language_code: 'en'
+      )
+    end
 
     # Redirects to requested action without locale prefixed
     def enforce_no_locale
