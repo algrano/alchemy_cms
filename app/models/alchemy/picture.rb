@@ -297,7 +297,7 @@ module Alchemy
 
     def set_fields
       return unless image_file.attached?
-      self.image_file_format = image_file.blob.content_type
+      self.image_file_format = image_file.blob.content_type.gsub('image/', '')
       self.image_file_name = image_file.blob.filename
       self.image_file_size = image_file.blob.byte_size
       self.image_file_height = image_file.blob.metadata[:height]
