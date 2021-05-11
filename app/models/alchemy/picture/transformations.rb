@@ -208,6 +208,7 @@ module Alchemy
     # Used when centercropping.
     #
     def reduce_to_image(dimensions)
+      image_file.analyze unless image_file.analyzed?
       {
         width: [dimensions[:width], image_file_width].min,
         height: [dimensions[:height], image_file_height].min,

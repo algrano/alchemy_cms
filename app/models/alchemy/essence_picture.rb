@@ -62,7 +62,7 @@ module Alchemy
     def picture_url(options = {})
       return if picture.nil?
 
-      picture.url(picture_url_options.merge(options)) || "fallback/default.jpg"
+      picture.url(picture_url_options.merge(options.except(:crop))) || "fallback/default.jpg"
     end
 
     # Picture rendering options
@@ -72,15 +72,18 @@ module Alchemy
     #
     # @return [HashWithIndifferentAccess]
     def picture_url_options
-      # return {} if picture.nil?
+      return {} if picture.nil?
+      {
+        convert: picture.default_render_format,
+        crop: crop_options,
+        resize_to_fit: content.settings[:size]&.split('x'),
+      }.with_indifferent_access
+    end
 
-      # {
-      #   format: picture.default_render_format,
-      #   crop_from: crop_from.presence,
-      #   crop_size: crop_size.presence,
-      #   size: content.settings[:size],
-      # }.with_indifferent_access
-      {}
+    def crop_options
+      if crop_values_present?
+        "#{crop_size}+#{crop_from.tr('x', '+')}"
+      end
     end
 
     # Returns an url for the thumbnail representation of the assigned picture
@@ -92,18 +95,14 @@ module Alchemy
     def thumbnail_url
       return if picture.nil?
 
-      # crop = crop_values_present? || content.settings[:crop]
-      # size = render_size || content.settings[:size]
+      crop = crop_values_present? || content.settings[:crop]
+      size = render_size || content.settings[:size]
 
-      # # options = {
-      # #   size: thumbnail_size(size, crop),
-      # #   crop: !!crop,
-      # #   crop_from: crop_from.presence,
-      # #   crop_size: crop_size.presence,
-      # #   flatten: true,
-      # #   format: picture.image_file_format,
-      # # }
-      options = {}
+      options = {
+        convert: picture.image_file_format,
+        crop: crop_options,
+        resize_to_fit: thumbnail_size(size, crop)&.split('x'),
+     }
       picture.url(options) || "fallback/default.jpg"
     end
 

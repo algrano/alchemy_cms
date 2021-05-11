@@ -45,7 +45,7 @@ module Alchemy
     include Alchemy::NameConversions
     include Alchemy::Taggable
     include Alchemy::TouchElements
-    #include Calculations
+    include Calculations
     has_one_attached :image_file
 
     before_save :set_fields
@@ -164,21 +164,9 @@ module Alchemy
     # @see Alchemy::Picture::Url#call for url options
     # @return [String|Nil]
     def url(options = {})
-      # TODO: Fix this
       return unless image_file.present?
-      Rails.application.routes.url_helpers.rails_blob_path(image_file, only_path: true)
-
-    #   variant = PictureVariant.new(self, options.slice(*TRANSFORMATION_OPTIONS))
-    #   self.class.url_class.new(variant).call(
-    #     options.except(*TRANSFORMATION_OPTIONS).merge(
-    #       basename: name,
-    #       ext: variant.render_format,
-    #       name: name,
-    #     )
-    #   )
-    # rescue ::Dragonfly::Job::Fetch::NotFound => e
-    #   log_warning(e.message)
-    #   nil
+      variant = image_file.variant(options)
+      Rails.application.routes.url_helpers.rails_representation_url(variant.processed, only_path: true)
     end
 
     def previous(params = {})
