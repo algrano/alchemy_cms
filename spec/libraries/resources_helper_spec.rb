@@ -33,7 +33,7 @@ describe Alchemy::ResourcesHelper do
   let(:resource_item) { double("resource-item") }
 
   before {
-    allow(controller).to receive(:main_app).and_return "main_app_proxy"
+    allow(controller).to receive(:main_app).and_return :main_app_proxy
     controller.instance_variable_set("@my_resource", resource_item)
     controller.instance_variable_set("@my_resources", [resource_item])
   }
@@ -41,7 +41,7 @@ describe Alchemy::ResourcesHelper do
   describe "path-helpers" do
     describe "#resource_url_proxy" do
       it "returns the current proxy for url-helper-methods" do
-        expect(controller.resource_url_proxy).to eq("main_app_proxy")
+        expect(controller.resource_url_proxy).to eq(:main_app_proxy)
       end
 
       context "when resource is in engine" do
@@ -49,7 +49,7 @@ describe Alchemy::ResourcesHelper do
         before { allow(controller_for_engine).to receive("my_engine").and_return("my_engine_proxy") }
 
         it "returns the engine's proxy" do
-          expect(controller_for_engine.resource_url_proxy).to eq("my_engine_proxy")
+          expect(controller_for_engine.resource_url_proxy).to eq(:my_engine_proxy)
         end
       end
     end
@@ -63,26 +63,26 @@ describe Alchemy::ResourcesHelper do
     describe "#resource_path" do
       it "invokes polymorphic-path with correct scope and object" do
         my_resource_item = double
-        expect(controller).to receive(:polymorphic_path).with(["main_app_proxy", "admin", my_resource_item], {})
+        expect(controller).to receive(:polymorphic_path).with([:main_app_proxy, :admin, my_resource_item], {})
         controller.resource_path(my_resource_item)
       end
 
       it "uses resource_name when no object is given" do
-        expect(controller).to receive(:polymorphic_path).with(["main_app_proxy", "admin", "namespace_my_resource"], {})
+        expect(controller).to receive(:polymorphic_path).with([:main_app_proxy, :admin, :namespace_my_resource], {})
         controller.resource_path
       end
     end
 
     describe "#resources_path" do
       it "invokes polymorphic-path with correct scope and resources_name" do
-        expect(controller).to receive(:polymorphic_path).with(["main_app_proxy", "admin", "namespace_my_resources"], {})
+        expect(controller).to receive(:polymorphic_path).with([:main_app_proxy, :admin, :namespace_my_resources], {})
         controller.resources_path
       end
     end
 
     describe "#new_resource_path" do
       it "invokes new_polymorphic_path with correct scope and resource_name" do
-        expect(controller).to receive(:new_polymorphic_path).with(["main_app_proxy", "admin", "namespace_my_resource"], {})
+        expect(controller).to receive(:new_polymorphic_path).with([:main_app_proxy, :admin, :namespace_my_resources], {})
         controller.new_resource_path
       end
     end
@@ -90,7 +90,7 @@ describe Alchemy::ResourcesHelper do
     describe "#edit_resource_path" do
       it "invokes edit_polymorphic_path with correct scope and resource_name" do
         my_resource_item = double
-        expect(controller).to receive(:edit_polymorphic_path).with(["main_app_proxy", "admin", my_resource_item], {})
+        expect(controller).to receive(:edit_polymorphic_path).with([:main_app_proxy, :admin, my_resource_item], {})
         controller.edit_resource_path(my_resource_item)
       end
     end
